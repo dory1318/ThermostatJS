@@ -48,7 +48,7 @@ $.get("https://api.openweathermap.org/data/2.5/weather?q="+city+"&APPID=" +key+ 
     updateTemperature()
   })
 
-  $('#power-saving').change(function() {
+  $('#power-saving').click(function() {
     if (thermostat.powerSavingModeOn == true) {
       console.log('turn it off');
       thermostat.turnPowerSavingModeOff();

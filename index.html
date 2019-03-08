@@ -11,23 +11,43 @@
   </head>
   <body>
   <div id="thermostat">
-      <h1 id="temperature"> TERMINAL </h1>
-      <form class="" action="index.html" method="post">
-        <button id="temp-down" type="button" name="down"> - </button>
-        <button id="temp-up" type="button" name="up"> + </button><br>
-        <button id="reset-temp" type="button" name="reset"> reset </button><br>
 
-        <label  id="power-saving-label" for="power-saving">power saving mode is ON</label>
+    <div id="thermostat-box">
+      <div id="location"><span id="current_city">London</span> - 7&#176;C </div>
+      <div id="temperature-box">
+        <span id="temperature">22</span>
+        <span id="degree-symbol">&#176;C</span>
+      </div>
+      <div><span id="current_usage">high</span></div>
+      <div id="psm-display"><span id="power-saving-label">PSM ON</span></div>
+      <div id="thermostat-buttons">
+        <button id="temp-up">Up</button>
+        <button id="temp-down">Down</button>
+        <button id="reset-temp">Reset</button>
+        <button id="power-saving">Power-Saving Mode</button>
+      </div>
+    </div>
+
+
+
+
+      <!-- <h1 id="temperature"> TERMINAL </h1> -->
+      <form class="" action="index.html" method="post">
+        <!-- <button id="temp-down" type="button" name="down"> - </button> -->
+        <!-- <button id="temp-up" type="button" name="up"> + </button><br> -->
+        <!-- <button id="reset-temp" type="button" name="reset"> reset </button><br> -->
+
+        <!-- <label  id="power-saving-label" for="power-saving">power saving mode is ON</label>
         <!-- <button id="power-saving" type="button" name="power-saving">Power Saving Mode</button> -->
-        <label class="switch" id="power-saving">
+        <!-- <label class="switch" id="power-saving">
           <input type="checkbox" checked>
           <span class="slider round"></span>
-        </label>
+        </label> -->
 
       </form>
       
       <div id="current-usage-box">
-        <h2 id="current_usage"> CURRENT USAGE: </h2>
+        <!-- <h2 id="current_usage"> CURRENT USAGE: </h2> -->
       </div>
       <div><input id="city" type="text"></div>
       <div><button id="show_weather">Current weather</button></div>
