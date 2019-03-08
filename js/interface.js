@@ -1,10 +1,14 @@
 $(document).ready(function() {
+
   function callingApi(city) {
-$.get("https://api.openweathermap.org/data/2.5/weather?q="+city+"&APPID=" +key+ "&units=metric", function(cities) {
-  document.getElementById("current_city").innerText = cities.name
-  document.getElementById("city_temp").innerText = cities.main.temp
-  });
-}
+    $.get("https://api.openweathermap.org/data/2.5/weather?q="+city+"&APPID=" +key+ "&units=metric", function(cities) {
+      document.getElementById("current_city").innerText = cities.name
+      document.getElementById("city_temp").innerText = Math.round(cities.main.temp);
+      });
+    }
+
+    callingApi("Tokyo");
+    
   function updateTemperature() {
     $('#temperature').text(thermostat.temperature);
     $('#current_usage').text(thermostat.currentUsage());
