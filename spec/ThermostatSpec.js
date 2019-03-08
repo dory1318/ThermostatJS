@@ -1,96 +1,68 @@
-describe('Thermostat', function() {
+'use strict';
+
+describe("Thermostat", function() {
+
+  var thermostat;
+
   beforeEach(function() {
-    thermostat = new Thermostat();
-  });
-  it('starts at 20 degrees', function(){
-    expect(thermostat.currentTemperature()).toEqual(20);
-  });
-  it('temperature can be increased by 1', function(){
-    thermostat.up();
-    expect(thermostat.currentTemperature()).toEqual(21);
-  });
-
-  it('temperature can be decreased by 1', function(){
-    thermostat.down();
-    expect(thermostat.currentTemperature()).toEqual(19);
-  });
-
-  it('restricts the minimum temperature to 10 degrees', function(){
-    var count = 11
-    while (count > 0) {
-      thermostat.down();
-      count--;
-    }
-    expect(thermostat.currentTemperature()).toEqual(10);
-  });
-
-  it('by default the power saving mode should be on', function(){
-    expect(thermostat.isPowerSavingModeOn()).toEqual(true);
-
-  });
-
-  it('power saving mode can be switched off', function(){
-    thermostat.turnPowerSavingModeOff();
-    expect(thermostat.isPowerSavingModeOn()).toEqual(false);
-  });
-
-  it('restricts the maximum temperature to 25 degrees when power saving mode is on', function(){
-    var count = 6;
-    while (count > 0){
-      thermostat.up();
-      count--;
-    }
-
-    expect(thermostat.currentTemperature()).toEqual(25);
-  });
-
-  it('restricts the maximum temperature to 32 degrees when power saving mode is off', function(){
-    thermostat.turnPowerSavingModeOff();
-    var count = 13;
-    while (count > 0){
-      thermostat.up();
-      count--;
-    };
-    expect(thermostat.currentTemperature()).toEqual(32);
-  });
-
-  it('resets the temperature to 20', function(){
-    thermostat.turnPowerSavingModeOff();
-    var count = 13;
-    while (count > 0){
-      thermostat.up();
-      count--;
-    };
-    thermostat.reset();
-    expect(thermostat.currentTemperature()).toEqual(20);
-  });
-
-  it('returns high usage when temperature is 32 degrees', function(){
-
-    thermostat.turnPowerSavingModeOff();
-    var count = 13;
-    while (count > 0){
-      thermostat.up();
-      count--;
-    };
-    expect(thermostat.energyUsage()).toEqual("High-Usage");
-  });
-
-  it('returns low usage when temperature is 17 degrees', function(){
-
-
-    var count = 3;
-    while (count > 0){
-      thermostat.down();
-      count--;
-    };
-    expect(thermostat.energyUsage()).toEqual("Low-Usage");
-  });
-
-  it('returns meduim usage when temperature is 20 degrees', function(){
-    thermostat.reset();
-    expect(thermostat.energyUsage()).toEqual("Medium-Usage");
+    thermostat = new Thermostat()
   });
 
 
+  it("should start at 20 degrees", function() {
+    expect(thermostat.temperature).toEqual(20);
   });
+
+  it("should increase the temperature", function() {
+    thermostat.up(4);
+    expect(thermostat.temperature).toEqual(24);
+  });
+
+  it("caps temperature at 25 degrees when power saving mode is on", function() {
+    thermostat.powerSavingModeOn = true
+    expect(thermostat.up(10)).toEqual("capped at 25 when power saving mode is on")
+    expect(thermostat.temperature).toEqual(25)
+  })
+
+  it("caps temperature at 32 degrees when power saving mode is off", function() {
+    thermostat.powerSavingModeOn = false
+    expect(thermostat.up(15)).toEqual("capped at 32 when power saving mode is off")
+    expect(thermostat.temperature).toEqual(32)
+  })
+
+  it("has power saving on by default", function() {
+    expect(thermostat.powerSavingModeOn).toBe(true)
+  })
+
+  it("resets the temperature to 20 when requested", function() {
+    thermostat.up(3)
+    expect(thermostat.temperature).toEqual(23)
+    thermostat.reset()
+    expect(thermostat.temperature).toEqual(20)
+  })
+
+  it("returns low-usage when asked", function() {
+    thermostat.temperature = 10
+    expect(thermostat.currentUsage()).toEqual("low-usage")
+  })
+
+  it("returns medium-usage when asked", function() {
+    thermostat.temperature = 24
+    expect(thermostat.currentUsage()).toEqual("medium-usage")
+  })
+
+  it("returns high-usage when asked", function() {
+    thermostat.temperature = 35
+    expect(thermostat.currentUsage()).toEqual("high-usage")
+  })
+
+  it("decreases temperature when asked", function() {
+    thermostat.down(5)
+    expect(thermostat.temperature).toEqual(15)
+  })
+
+  it("caps minimum temperature at 10 degrees", function() {
+    expect(thermostat.down(15)).toEqual("minimum temperature is 10")
+    expect(thermostat.temperature).toEqual(10)
+  })
+})
