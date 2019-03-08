@@ -71,12 +71,16 @@ input:checked + .slider:before {
 }
 
 /* thermostat div */
+.display-buttons {
+  width: 24%;
+  height: 50px;
+}
 
 #thermostat-box {
   width: 30%;
   min-height: 450px;
   margin: 0 auto;
-  border: 1px solid black;
+  border: 1rem solid black;
 }
 
 #temperature-box {
@@ -96,4 +100,13 @@ input:checked + .slider:before {
   border: none;
   padding: 3px;
   font-size: 12px;
+}
+
+#current_usage {
+  padding-right: 10px;
+  float: right;
+}
+
+#psm-display {
+  padding-left: 10px;
 }

@@ -52,14 +52,17 @@ $.get("https://api.openweathermap.org/data/2.5/weather?q="+city+"&APPID=" +key+ 
     if (thermostat.powerSavingModeOn == true) {
       console.log('turn it off');
       thermostat.turnPowerSavingModeOff();
-      $('#power-saving-label').text("power saving mode is OFF");
+      $('#power-saving-label').text("OFF");
+      $('#power-saving').css("background-color", "red");
       updateTemperature()
     }
 
     else if (thermostat.powerSavingModeOn == false) {
       console.log('turn it on');
       thermostat.turnPowerSavingModeOn();
-      $('#power-saving-label').text("power saving mode is ON");
+      $('#power-saving-label').text("ON");
+      $('#power-saving-label').text("ON");
+      $('#power-saving').css("background-color", "green");
       updateTemperature()
     }
   })
