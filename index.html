@@ -10,22 +10,29 @@
     <script src="key.js"></script>
   </head>
   <body>
-    <h1 id="temperature"> TERMINAL </h1>
-    <form class="" action="index.html" method="post">
-      <button id="temp-down" type="button" name="down"> - </button>
-      <button id="temp-up" type="button" name="up"> + </button><br>
-      <button id="reset-temp" type="button" name="reset"> reset </button><br>
-<label class="switch">
-  <input type="checkbox" checked>
-  <span class="slider round"></span>
-</label>
-      <label  id="power-saving-label" for="power-saving">power saving mode is ON</label>
-      <button id="power-saving" type="button" name="power-saving">Power Saving Mode</button>
-    </form>
-    <h2 id="current_usage"> CURRENT USAGE: </h2>
-    <div><input id="city" type="text"></div>
-    <div><button id="show_weather">Current weather</button></div>
-    <div><h2 id="current_city"></h2></div>
-    <div><h3 id="city_temp"></h3></div>
+  <div id="thermostat">
+      <h1 id="temperature"> TERMINAL </h1>
+      <form class="" action="index.html" method="post">
+        <button id="temp-down" type="button" name="down"> - </button>
+        <button id="temp-up" type="button" name="up"> + </button><br>
+        <button id="reset-temp" type="button" name="reset"> reset </button><br>
+
+        <label  id="power-saving-label" for="power-saving">power saving mode is ON</label>
+        <!-- <button id="power-saving" type="button" name="power-saving">Power Saving Mode</button> -->
+        <label class="switch" id="power-saving">
+          <input type="checkbox" checked>
+          <span class="slider round"></span>
+        </label>
+
+      </form>
+      
+      <div id="current-usage-box">
+        <h2 id="current_usage"> CURRENT USAGE: </h2>
+      </div>
+      <div><input id="city" type="text"></div>
+      <div><button id="show_weather">Current weather</button></div>
+      <div><h2 id="current_city"></h2></div>
+      <div><h3 id="city_temp"></h3></div>
+    </div>
   </body>
 </html>
